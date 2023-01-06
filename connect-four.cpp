@@ -23,7 +23,7 @@ void printgame(vector<vector<string>> vect) {
 vector<vector<string>> resetboard(vector<vector<string>> vect) {
     for (int i = 0; i < vect.size(); i++) {
         for (int j = 0; j < vect[i].size(); j++) {
-            vect[i][j] = " ";
+            vect[i][j] = "_";
         }
     }
     return vect;
@@ -32,7 +32,7 @@ vector<vector<string>> resetboard(vector<vector<string>> vect) {
 vector<vector<string>> updategame(string s, int column, vector<vector<string>>& vect) {
     
     int row = nrows - 1;
-    while (row >= 0 && vect[row][column] != " ") {
+    while (row >= 0 && vect[row][column] != "_") {
         row--;
     }
     if (row < 0) {
@@ -47,7 +47,7 @@ string checkwinner(vector<vector<string>> board, int chance) {
     bool condition = false;
     for (int i = 0; i < nrows; i++) {
         for (int j = 0; j < 4; j++) {
-            condition = condition||((board[i][j]==board[i][j+1])&&(board[i][j+1]==board[i][j+2])&&(board[i][j+2]==board[i][j+3])&&(board[i][j+3] != std::string(" ")));
+            condition = condition||((board[i][j]==board[i][j+1])&&(board[i][j+1]==board[i][j+2])&&(board[i][j+2]==board[i][j+3])&&(board[i][j+3] != std::string("_")));
             if (condition == true) {
                 if (chance%2==0) {
                     return "Player1";
@@ -61,7 +61,7 @@ string checkwinner(vector<vector<string>> board, int chance) {
     for (int j = 0; j < ncolumns; j++) {
         for (int i = 0; i < 3; i++) {
             condition = false;
-            condition = condition||((board[i][j]==board[i+1][j])&&(board[i+1][j]==board[i+2][j])&&(board[i+2][j]==board[i+3][j])&&(board[i+3][j] != std::string(" ")));
+            condition = condition||((board[i][j]==board[i+1][j])&&(board[i+1][j]==board[i+2][j])&&(board[i+2][j]==board[i+3][j])&&(board[i+3][j] != std::string("_")));
             if (condition == true) {
                 if (chance%2==0) {
                     return "Player1";
@@ -75,7 +75,7 @@ string checkwinner(vector<vector<string>> board, int chance) {
     for (int i = 0; i < nrows - 3; i++) {
         for (int j = 0; j < ncolumns - 3; j++) {
             condition = false;
-            condition = condition || ((board[i][j] == board[i+1][j+1]) && (board[i+1][j+1] == board[i+2][j+2]) && (board[i+2][j+2] == board[i+3][j+3]) && (board[i][j] != std::string(" ")));
+            condition = condition || ((board[i][j] == board[i+1][j+1]) && (board[i+1][j+1] == board[i+2][j+2]) && (board[i+2][j+2] == board[i+3][j+3]) && (board[i][j] != std::string("_")));
             if (condition == true) {
                 if (chance % 2 == 0) {
                     return "Player1";
@@ -90,7 +90,7 @@ string checkwinner(vector<vector<string>> board, int chance) {
     for (int i = 0; i < nrows - 3; i++) {
         for (int j = 3; j < ncolumns; j++) {
             condition = false;
-            condition = condition || ((board[i][j] == board[i+1][j-1]) && (board[i+1][j-1] == board[i+2][j-2]) && (board[i+2][j-2] == board[i+3][j-3]) && (board[i][j] != std::string(" ")));
+            condition = condition || ((board[i][j] == board[i+1][j-1]) && (board[i+1][j-1] == board[i+2][j-2]) && (board[i+2][j-2] == board[i+3][j-3]) && (board[i][j] != std::string("_")));
             if (condition == true) {
                 if (chance % 2 == 0) {
                     return "Player1";
@@ -111,7 +111,7 @@ int main() {
         vector<string> rowV;
 
         for (int j = 0; j < ncolumns; ++j) {
-            rowV.push_back(" ");
+            rowV.push_back("_");
         }
         v.push_back(rowV);
     }
@@ -119,6 +119,7 @@ int main() {
     cout << "Welcome to Connect 4. This game has 6 rows and 7 columns. Enter 1 to start." << endl;
     int g;
     cin >> g;
+    printgame(v);
     if (g!=1) {
         cout << "Arey yeh kya enter kardiya!!" << endl;
     }
