@@ -120,8 +120,12 @@ int main() {
     int g;
     cin >> g;
     printgame(v);
-    if (g!=1) {
-        cout << "Arey yeh kya enter kardiya!!" << endl;
+    while (g!=1) {
+        cout << "Arey yeh kya enter kardiya!! Enter 1 to start. Enter 0 to close the game." << endl;
+        cin >> g;
+        if (g == 0) {
+            exit(0);
+        }
     }
     while (g==1) {
         int column;
@@ -133,6 +137,11 @@ int main() {
                 cout << "Player2's chance. Enter column number." << endl;
             }
             cin >> column;
+            if (column < 1 || column > 7) {
+                cout << "Invalid Column number. Enter again." << endl;
+                chance = chance - 1;
+                continue;
+            }
             column = column - 1;
             bool empty = false;
             for (int z = 0; z < 6; z++) {
@@ -173,13 +182,26 @@ int main() {
         int t;
         cin >> t;
         g = t;
-        if (g==1) {
+        if (g == 1) {
+            cout << "Welcome to Connect 4. This game has 6 rows and 7 columns. Enter 1 to start." << endl;
+            resetboard(v);
+            printgame(v);
             continue;
-        } else if (g==0) {
-            exit(0);
         } else {
-            cout << "Arey yeh kya enter kardiya!!" << endl;
-            exit(0);
+            while(g != 1) {
+                cout << "Arey yeh kya enter kardiya!! Press 1 to play again or 0 to close the game." << endl;
+                cin >> g;
+                if(g == 0) {
+                    exit(0);
+                }
+                if (g == 1) {
+                    cout << "Welcome to Connect 4. This game has 6 rows and 7 columns. Enter 1 to start." << endl;
+                    resetboard(v);
+                    printgame(v);
+                    continue;
+                }
+            }
+            
         }
     }
     return 0;
