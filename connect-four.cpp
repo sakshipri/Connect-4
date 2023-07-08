@@ -101,7 +101,7 @@ string checkwinner(vector<vector<string>> board, int chance) {
             }
         }
     }
-    if (condition = false) {
+    if (condition == false) {
         return "";
     }
 }
@@ -134,6 +134,18 @@ int main() {
             }
             cin >> column;
             column = column - 1;
+            bool empty = false;
+            for (int z = 0; z < 6; z++) {
+                if (v[z][column] == "_") {
+                    empty = true;
+                    break;
+                }
+            }
+            if (empty == false) {
+                cout << "Column is not empty. Enter another column number." << endl;
+                chance = chance - 1;
+                continue;
+            }
             if (column >= 0 && column < 7) {
                 if (chance%2==0) {
                     updategame("o", column, v);
